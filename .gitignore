@@ -1,0 +1,8 @@
+.venv
+.env
+
+build
+data
+dist
+
+*.spec

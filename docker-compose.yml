@@ -1,0 +1,9 @@
+services:
+  minecraft:
+    image: minecraft-docker:latest
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+      - ${RCON_PORT}:${RCON_PORT}
+    volumes:
+      - ./data:/server
+    env_file: .env
