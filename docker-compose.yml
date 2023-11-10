@@ -1,9 +1,11 @@
 services:
   minecraft:
-    image: minecraft-docker:latest
+    build:
+      context: .
+    env_file: .env
+    restart: unless-stopped
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
       - ${RCON_PORT}:${RCON_PORT}
     volumes:
       - ./data:/server
-    env_file: .env

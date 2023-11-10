@@ -4,7 +4,7 @@ from getpass import getpass
 
 CHAR_LENGTH = 64
 TITLE = "Remote Console"
-VERSION = "1.0.0"
+VERSION = "1.0.1"
 
 
 def get_parser() -> ArgumentParser:
@@ -37,7 +37,7 @@ def get_rcon_info(parser: ArgumentParser) -> tuple[str, int, str]:
 
     print_title()
 
-    if args.host or args.port or args.password:
+    if args.host and args.port and args.password:
         print(
             f"Host: {args.host}",
             f"Port: {args.port}",
