@@ -25,8 +25,10 @@ RUN apk add --update --no-cache openjdk21-jre nano
 
 # Copy server tools and create symbolic links for scripts
 COPY tools .
-RUN ln -s /server_tools/scripts/console.sh /usr/bin/console && \
-    ln -s /server_tools/scripts/start-server.sh /usr/bin/start-server
+RUN chmod +x /server_tools/scripts/console.sh \
+    && ln -s /server_tools/scripts/console.sh /usr/bin/console \
+    && chmod +x /server_tools/scripts/start-server.sh \
+    && ln -s /server_tools/scripts/start-server.sh /usr/bin/start-server
 
 # Copy additional server files
 COPY data /server
