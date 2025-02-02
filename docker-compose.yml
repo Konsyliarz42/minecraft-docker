@@ -1,0 +1,15 @@
+services:
+  minecraft:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    env_file: .env
+    ports:
+      # - ${QUERY_PORT}:${QUERY_PORT}
+      # - ${RCON_PORT}:${RCON_PORT}
+      - ${SERVER_PORT}:${SERVER_PORT}
+    volumes:
+      - server_data:/server
+
+volumes:
+  server_data:
