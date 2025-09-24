@@ -1,0 +1,15 @@
+services:
+  server:
+    container_name: minecraft-server
+    build:
+      context: .
+      dockerfile: ./server/Dockerfile
+    restart: unless-stopped
+    pre_stop:
+      - command: stop
+    ports:
+      - ${RCON_PORT}:${RCON_PORT}
+      - ${SERVER_PORT}:${SERVER_PORT}
+    env_file: .env
+    volumes:
+      - ./server/data:/server
