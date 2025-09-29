@@ -8,8 +8,9 @@ services:
     pre_stop:
       - command: stop
     ports:
-      - ${RCON_PORT}:${RCON_PORT}
       - ${SERVER_PORT}:${SERVER_PORT}
+    expose:
+      - ${RCON_PORT}
     env_file: .env
     volumes:
       - ./server/data:/server
