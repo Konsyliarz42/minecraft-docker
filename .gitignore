@@ -1,0 +1,10 @@
+.vscode
+.venv
+.env
+
+logs
+
+*cache*
+server/data/*
+
+!.gitkeep
