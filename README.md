@@ -15,7 +15,7 @@ Docker wrapper for **ANY** Minecraft server.
 4. Set variables in the `.env` file.
 5. Run docker compose and wait for start server then stop the container.
 6. Configure your server in created `server/data/server.properties`.
-   > Remember that variables from `.env` override values from `server.properties` when the server starts up.
+   > `enable-rcon`, `rcon.password`, `rcon.port`, `server-port` are overwritten at startup.
 7. Run docker compose in detached mode:
    ```bash
    docker compose up -d
@@ -47,15 +47,17 @@ or outside the repository:
 docker exec minecraft-server send <command>
 ```
 
-## Extra - Console App
+You can also use my [Console App](#console-app).
+
+## Console App
 
 If you want to sending multiple commands I recommand to use my [TUI](https://en.wikipedia.org/wiki/Text-based_user_interface).
 
 ### Requirements
 
 - [Python](https://www.python.org/) - Version is defined [here](console/.python-version).
-- [Python dependencies](console/requirements.txt)
-- Enabled RCON port in `docker-compose.yaml`
+- [App requirements](console/requirements.txt)
+- Uncomment RCON port in `docker-compose.yaml`
 
 ### Usage
 
