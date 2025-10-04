@@ -13,12 +13,12 @@ __all__ = ["Spinner"]
 class Spinner:
     DOTS: Final[tuple[str, ...]] = ("⣸", "⣴", "⣦", "⣇", "⡏", "⠟", "⠻", "⢹")
 
-    def __init__(self, message: str | None = None, color: Color = Color.BLUE) -> None:
-        self.message = message or ""
+    def __init__(self, message: str = "", color: Color = Color.BLUE) -> None:
+        self.message = message
         self.color = color
 
         self._start = False
-        self.thread = Thread(target=self._spin)
+        self.thread: Thread | None = None
 
     def __enter__(self) -> None:
         self.start()
@@ -44,11 +44,16 @@ class Spinner:
         print("\r", " " * (len(self.message) + 2), end="\r", flush=True)
 
     def start(self, message: str | None = None) -> None:
+        if self.thread and self.thread.is_alive():
+            raise Exception("The spinner has already started")
+
         self.message = message if message is not None else self.message
         self._start = True
+        self.thread = Thread(target=self._spin)
         self.thread.start()
 
     def stop(self) -> None:
         self._start = False
-        self.thread.join()
-        self.thread = Thread(target=self._spin)
+
+        if self.thread and self.thread.is_alive():
+            self.thread.join()

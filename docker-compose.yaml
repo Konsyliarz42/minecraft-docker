@@ -9,6 +9,7 @@ services:
       - command: stop
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
+      # - ${RCON_PORT}:${RCON_PORT}
     expose:
       - ${RCON_PORT}
     env_file: .env

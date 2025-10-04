@@ -34,7 +34,7 @@ if __name__ == "__main__":
                 command = "/" + input("/\n\033[1A\033[3C").strip()
                 logger.info("Sending command: '%s'", command)
 
-                if command.strip() == "/exit":
+                if command == "/exit":
                     logger.debug("Break loop")
                     break
 
@@ -47,7 +47,7 @@ if __name__ == "__main__":
                 print(styled_string(f"⡇{datetime.now().strftime('%H:%M:%S')}⢸", Color.BLUE), command)
                 print(response or styled_string("- empty response -", italic=True))
 
-                if command.strip() == "/stop":
+                if command == "/stop":
                     logger.debug("Break loop")
                     break
 
@@ -63,4 +63,3 @@ if __name__ == "__main__":
         loader.stop()
         logger.critical("Forced shutdown by user")
         print(styled_string("\033[2K\rForced shutdown by user", Color.LIGHT_RED))
-        
